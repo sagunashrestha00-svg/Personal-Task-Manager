@@ -193,7 +193,21 @@ body {
     width: 100%;
     flex-wrap: wrap;
   }
+.task-item > div:first-child {
+  width: 100%;
+}
 
+.task-item input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.task-item > div:first-child button {
+  margin-right: 6px;
+}
   .task-filter {
     flex-wrap: wrap;
   }
