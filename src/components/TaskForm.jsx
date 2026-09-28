@@ -3,18 +3,22 @@ import { useState } from 'react'
 function TaskForm({ onAddTask }) {
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('Personal')
+  const [error, setError] = useState('')
 
   function handleSubmit(event) {
     event.preventDefault()
 
-    if (title.trim() === '') {
+    const trimmedTitle = title.trim()
+
+    if (trimmedTitle === '') {
+      setError('Please enter a task before adding it.')
       return
     }
 
     const newTask = {
       id: Date.now(),
-      title: title,
-      category: category,
+      title: trimmedTitle,
+      category,
       completed: false,
     }
 
@@ -22,6 +26,15 @@ function TaskForm({ onAddTask }) {
 
     setTitle('')
     setCategory('Personal')
+    setError('')
+  }
+
+  function handleTitleChange(event) {
+    setTitle(event.target.value)
+
+    if (error) {
+      setError('')
+    }
   }
 
   return (
@@ -30,7 +43,7 @@ function TaskForm({ onAddTask }) {
         type="text"
         placeholder="Enter a task..."
         value={title}
-        onChange={(event) => setTitle(event.target.value)}
+        onChange={handleTitleChange}
       />
 
       <select
@@ -44,6 +57,8 @@ function TaskForm({ onAddTask }) {
       </select>
 
       <button type="submit">Add Task</button>
+
+      {error && <p className="form-error">{error}</p>}
     </form>
   )
 }
