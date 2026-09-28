@@ -63,10 +63,11 @@ function Home() {
 
       <TaskForm onAddTask={addTask} />
 
-      <TaskFilter
-        filter={filter}
-        onFilterChange={setFilter}
-      />
+     <TaskFilter
+  filter={filter}
+  onFilterChange={setFilter}
+  tasks={tasks}
+/>
 
      <p className="task-count">
   {tasks.filter((task) => !task.completed).length} remaining ·{' '}
