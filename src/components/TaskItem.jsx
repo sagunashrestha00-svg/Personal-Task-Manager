@@ -3,13 +3,32 @@ import { useState } from 'react'
 function TaskItem({ task, onToggle, onDelete, onEdit }) {
   const [isEditing, setIsEditing] = useState(false)
   const [editTitle, setEditTitle] = useState(task.title)
+  const [error, setError] = useState('')
 
   function handleEdit() {
-    if (editTitle.trim() === '') {
+    const trimmedTitle = editTitle.trim()
+
+    if (trimmedTitle === '') {
+      setError('Task title cannot be empty.')
       return
     }
 
-    onEdit(task.id, editTitle)
+    onEdit(task.id, trimmedTitle)
+    setIsEditing(false)
+    setError('')
+  }
+
+  function handleEditTitleChange(event) {
+    setEditTitle(event.target.value)
+
+    if (error) {
+      setError('')
+    }
+  }
+
+  function handleCancel() {
+    setEditTitle(task.title)
+    setError('')
     setIsEditing(false)
   }
 
@@ -20,11 +39,13 @@ function TaskItem({ task, onToggle, onDelete, onEdit }) {
           <input
             type="text"
             value={editTitle}
-            onChange={(event) => setEditTitle(event.target.value)}
+            onChange={handleEditTitleChange}
           />
 
           <button onClick={handleEdit}>Save</button>
-          <button onClick={() => setIsEditing(false)}>Cancel</button>
+          <button onClick={handleCancel}>Cancel</button>
+
+          {error && <p className="form-error">{error}</p>}
         </div>
       ) : (
         <>
