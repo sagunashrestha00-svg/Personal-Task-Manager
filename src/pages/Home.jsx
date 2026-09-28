@@ -74,11 +74,12 @@ function Home() {
 </p>
 
       <TaskList
-        tasks={filteredTasks}
-        onToggle={toggleTask}
-        onDelete={deleteTask}
-        onEdit={editTask}
-      />
+  tasks={filteredTasks}
+  hasTasks={tasks.length > 0}
+  onToggle={toggleTask}
+  onDelete={deleteTask}
+  onEdit={editTask}
+/>
     </main>
   )
 }
