@@ -119,8 +119,17 @@ body {
   background: #eee;
 }
 
+.task-item.completed {
+  opacity: 0.75;
+  background: #f0f0f0;
+}
+
 .task-item.completed h3 {
   text-decoration: line-through;
+  color: #888;
+}
+
+.task-item.completed span {
   color: #888;
 }
 
