@@ -5,11 +5,18 @@ import TaskList from '../components/TaskList'
 
 function Home() {
   const [tasks, setTasks] = useState(() => {
-    const savedTasks = localStorage.getItem('tasks')
+  const savedTasks = localStorage.getItem('tasks')
 
-    return savedTasks ? JSON.parse(savedTasks) : []
-  })
+  if (!savedTasks) {
+    return []
+  }
 
+  try {
+    return JSON.parse(savedTasks)
+  } catch {
+    return []
+  }
+})
   const [filter, setFilter] = useState('all')
 
   useEffect(() => {
