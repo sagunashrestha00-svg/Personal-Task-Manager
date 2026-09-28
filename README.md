@@ -81,3 +81,6 @@ Open the local URL shown in the terminal in your web browser.
 - Tasks are not synchronized between different devices.
 - The application does not have user login or an online database.
 - Clearing browser storage will remove the saved tasks.
+
+### Repositories Link
+https://github.com/sagunashrestha00-svg/Personal-Task-Manager
